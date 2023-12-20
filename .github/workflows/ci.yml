@@ -28,7 +28,6 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
-      - name: Make gradlew executable
         run: chmod +x ./gradlew
 
       - run: ./gradlew test
