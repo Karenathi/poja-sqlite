@@ -41,7 +41,12 @@ jobs:
 
       # Nouvelle étape pour le déploiement
       - name: Deploy to AWS
-        run: |
-          # Ajoutez ici vos commandes AWS CLI pour déployer votre application
-          # Par exemple, vous pouvez utiliser aws s3 pour copier des fichiers vers un compartiment S3, etc.
-          # Assurez-vous d'utiliser les informations d'identification AWS configurées dans les étapes précédentes.
+        uses: aws-actions/aws-code-deploy@v2
+        with:
+          application-name: 'votre-nom-d-application'
+          deployment-group: 'votre-groupe-de-déploiement'
+          region: ${{ env.AWS_REGION }}
+        env:
+          AWS_REGION: ${{ env.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
