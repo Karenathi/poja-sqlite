@@ -38,3 +38,15 @@ jobs:
       - run: chmod +x ./gradlew
 
       - run: ./gradlew test
+
+      # Nouvelle étape pour le déploiement
+      - name: Deploy to AWS
+        uses: aws-actions/aws-code-deploy@v2
+        with:
+          application-name: 'votre-nom-d-application'
+          deployment-group: 'votre-groupe-de-déploiement'
+          region: ${{ env.AWS_REGION }}
+        env:
+          AWS_REGION: ${{ env.AWS_REGION }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
