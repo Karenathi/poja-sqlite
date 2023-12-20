@@ -26,8 +26,8 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: ${{ env.AWS_REGION }}
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
 
       - name: Setup Java
         uses: actions/setup-java@v3
@@ -43,10 +43,6 @@ jobs:
       - name: Deploy to AWS
         uses: aws-actions/aws-code-deploy@v2
         with:
-          application-name: 'votre-nom-d-application'
-          deployment-group: 'votre-groupe-de-déploiement'
+          application-name: 'poja-sqlite'
+          deployment-group: 'poja-sqlite'
           region: ${{ env.AWS_REGION }}
-        env:
-          AWS_REGION: ${{ env.AWS_REGION }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
